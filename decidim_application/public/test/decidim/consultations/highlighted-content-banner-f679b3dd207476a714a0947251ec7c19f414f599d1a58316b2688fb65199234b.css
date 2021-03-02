@@ -1,0 +1,53 @@
+/* line 3, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+.highligted-content-banner {
+  background-size: cover;
+  position: relative;
+  z-index: 0;
+  min-height: 255px;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+/* line 11, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+.highligted-content-banner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 24, 29, 0.6);
+}
+
+/* line 21, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+.highligted-content-banner .highligted-content-banner__container {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 0;
+}
+
+@media print, screen and (min-width: 40em) {
+  /* line 21, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+  .highligted-content-banner .highligted-content-banner__container {
+    padding: 4rem 0;
+  }
+}
+
+@media screen and (min-width: 50em) {
+  /* line 21, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+  .highligted-content-banner .highligted-content-banner__container {
+    padding: 5rem 0;
+  }
+}
+
+@media print, screen and (min-width: 64em) {
+  /* line 21, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+  .highligted-content-banner .highligted-content-banner__container {
+    padding: 6rem 0;
+  }
+}
+
+/* line 38, ../root/.rbenv/versions/2.6.3/lib/ruby/gems/2.6.0/gems/decidim-consultations-0.20.0/app/assets/stylesheets/decidim/consultations/highlighted-content-banner.css.scss */
+.highligted-content-banner .highligted-content-banner__container .row {
+  max-width: 100rem;
+}

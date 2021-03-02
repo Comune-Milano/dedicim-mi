@@ -1,0 +1,22 @@
+<h2 class="process-title-summary">
+	<%= user.name %>
+</h2>
+
+<%#= decidim_form_for(@form, html: { class: "form new_officialization" }, url: officializations_path, method: :post) do |f| %>
+  <div class="card">
+    <div class="card-section">
+	    <div class="row column">
+		    <%= user.body_richiesta  %>
+        <%#= f.hidden_field :user_id %>
+        <%#= f.translated :text_field, :officialized_as, label: "Richiesta" %>
+      </div>
+    </div>
+  </div>
+  <% url_name = user.name.gsub! ' ', '+' %>
+  <div class="button--double form-general-submit">
+	  <%= link_to "Ufficializza", new_officialization_path(user_id: user.id), class: "button"  %>
+	  <%= link_to "Invia messaggio", current_or_new_conversation_path_with(user), class:"button" %>
+	  <%= link_to "Cancella richiesta", {controller: "officializations", action: "cancella", :user_id => user.id}, class:"button" %>
+	  <%= link_to "Torna indietro", "/decidim/admin/officializations?q=" + url_name, class:"button" %>
+  </div>
+<% #end %>

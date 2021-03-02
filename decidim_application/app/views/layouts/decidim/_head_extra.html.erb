@@ -1,0 +1,20 @@
+<%#
+This file is meant to be overriden by the app developers in order to
+include extra headers like tracking, error handling and such.
+
+Note that thie code you add here will be run for all organizations in
+your instance of Decidim. If you want to add code for a specific
+organization, add it to the organization's `header_snippets` field,
+which can be modified at the organization admin section.
+
+The `header_snippets` organization field will render *after* this file.
+
+Just copy your own version of the file under:
+`app/views/layouts/decidim/_head_extra.html.erb`
+%>
+<script type="text/javascript">
+    var pageViewData = new Object();
+    pageViewData["page_name"] = "<%= decidim_page_title %>";
+</script>
+
+<script src="//assets.adobedtm.com/fd235021841d59990748b6f77f451cc2db6649ad/satelliteLib-2d346812c55dcf490db0ee6bb3d7c77351023f45.js"></script>

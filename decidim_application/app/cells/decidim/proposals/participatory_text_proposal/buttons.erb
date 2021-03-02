@@ -1,0 +1,287 @@
+<div class="columns mediumlarge-4 hidden-section p-sm">
+  <div class="medium-8">
+
+    <% if current_user == nil %>
+        <!-- UTENTE NON LOGGATO -->
+        <button onclick="showModal()" class="button secondary hollow expanded button--icon button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">SEGUI</button>
+	<% if amendmendment_creation_enabled? %>
+	  <div onclick="showModal()" class="button secondary hollow expanded button--icon button--sc" style="border-radius: 5px; font-size: 0.8rem; text-align: center; padding-left: 10px">Aggiungi un'osservazione</div>
+	<% end %>
+
+	<% if component_settings.comments_enabled? %>
+	  <div onclick="showModal()" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">Commenta</div>
+	<% end %>
+
+    <% elsif current_user != nil && current_user.officialized? %>
+        <!-- UTENTE UFFICIALIZZATO -->
+	<%= follow_button_for(model, true) %>
+	<% if amendmendment_creation_enabled? || visible_emendations.any? %>
+          <div class="button-group button-group--collapse mb-s row collapse amend-buttons">
+          <%= link_to resource_amendments_path, class: "column medium-4 button light secondary" do %>
+            <div style="text-align: center"><%= visible_emendations.count %></div>
+          <% end %>
+          <%= link_to amend_resource_path, class: "column button hollow secondary button--sc", disabled: amend_button_disabled? do %>
+            <div style="font-size: 12px; text-align: left; padding-left: 10px">Aggiungi un'osservazione<%#= t("amend", scope: "decidim.proposals.participatory_text_proposal.buttons") %></div>
+         <% end %>
+         </div>
+        <% end %>
+
+
+
+
+        <% if component_settings.comments_enabled? %>
+          <div class="button-group button-group--collapse row collapse comment-buttons">
+          <% if current_settings.comments_blocked? %>
+            <%= content_tag :button, class: "column medium-4 button light secondary", title: t("endorse", scope: "decidim.proposals.participatory_text_proposal.buttons") do %>
+              <%= icon "comment-square", class: "icon--small", aria_label: t("comments", scope: "decidim.proposals.participatory_text_proposal.buttons"), role: "img" %>
+              <%= model.comments.count %>
+            <% end %>
+            <%= content_tag :button, t("comment", scope: "decidim.proposals.participatory_text_proposal.buttons"), class: "column button hollow secondary button--sc disabled", disabled: true, title: t("comment", scope: "decidim.proposals.participatory_text_proposal.buttons") %>
+          <% else %>
+            <% if current_user != nil %>
+              <%= link_to resource_comments_path, class: "column medium-4 button light secondary" do %>
+                <div style="text-align: center">
+                  <%#= icon "comment-square", class: "icon--small", aria_label: t("comments", scope: "decidim.proposals.participatory_text_proposal.buttons"), role: "img" %> <%= model.comments.count %>
+                </div>
+              <% end %>
+              <%= link_to resource_comments_path, class: "column button hollow secondary button--sc" do %>
+                <%#= t("comment", scope: "decidim.proposals.participatory_text_proposal.buttons") %>
+                <div style="font-size: 1rem; text-align: left; padding-left: 10px">Commenta</div>
+              <% end %>
+            <% else %>
+              <div onclick="showModal()" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">Commenta</div>
+            <% end %>
+          <% end %>
+          </div>
+       <% end %>
+
+
+
+        
+<% else %>
+		<% if current_user.form_inviato %>
+            <!-- UTENTE NON UFFICIALIZZATO -->
+			<div onclick="document.getElementById('myModal2').style.display = 'block'" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">SEGUI</div>
+
+			<% if amendmendment_creation_enabled? %>
+				<div onclick="document.getElementById('myModal2').style.display = 'block'" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">AGGIUNGI UN'OSSERVAZIONE</div>
+			<% end %>
+
+			<% if component_settings.comments_enabled? %>
+				<div onclick="document.getElementById('myModal2').style.display = 'block'" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">Commenta</div>
+			<% end %>
+		<% else %>
+            <!-- UTENTE NON UFFICIALIZZATO -->
+			<div onclick="document.getElementById('myModal').style.display = 'block'" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">SEGUI</div>
+
+			<% if amendmendment_creation_enabled? %>
+				<div onclick="document.getElementById('myModal').style.display = 'block'" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">AGGIUNGI UN'OSSERVAZIONE</div>
+			<% end %>
+
+			<% if component_settings.comments_enabled? %>
+				<div onclick="document.getElementById('myModal').style.display = 'block'" class="column button hollow secondary button--sc" style="border-radius: 5px; font-size: 1rem; text-align: center; padding-left: 10px">Commenta</div>
+			<% end %>
+		<% end %>
+    <% end %>
+  </div>
+</div>
+    
+
+
+
+<div id='login' class="reveal-overlay" style="display: none;"><div class="reveal" id="login2" style="width: 450px; display: none; top: 45px; padding: 15px" tabindex="-1">
+  <div class="reveal__header">
+    <h3 class="reveal__title" style="font-size: 24px">Per proseguire clicca su ACCEDI</h3>
+    <button id="close-button" onclick="closeModal()"  class="close-button" data-close="" aria-label="Close modal" type="button">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+    <div class="row">
+
+      <!--
+
+      <div class="columns medium-8 medium-centered" style="display:none">
+            <div>
+              <div class="field">
+              </div>
+              <div class="field">
+              </div>
+            </div>
+            <div class="actions">
+            </div>
+            <p class="text-center">
+            </p>
+          <p class="text-center">
+          </p>
+      </div>
+
+      -->
+      <div>
+         <center>
+         <a class="button expanded" style="color: white; width: 90%" href="/users/auth/saml">Accedi</a>
+        </center>
+      </div>
+    </div>
+</div>
+</div>
+
+<script>
+        /*document.getElementsByClassName("column").onclick = function() {
+                document.getElementById('login').style.display = 'block';
+                document.getElementById('login2').style.display = 'block';
+        };*/
+function showModal() {
+   document.getElementById('login').style.display = 'block';
+   document.getElementById('login2').style.display = 'block';
+}
+
+        function closeModal() {
+                document.getElementById('login2').style.display = 'none';
+                document.getElementById('login').style.display = 'none';
+
+        }
+
+
+</script>
+
+
+<style>
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+  }
+
+  .modal-content {
+    border-radius: 8px;
+  }
+
+  .modal-content h2 {
+    color: #d6012e !important;
+  }
+
+  .modal-content center input[type="submit"] {
+    background: #d6012e;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px !important;
+    cursor: pointer;
+    white-space: pre-wrap !important;
+  }
+
+  .modal-content center input[type="submit"]:hover {
+    background: #e01b45;
+  }
+
+  .modal-content center input[type="submit"]:active {
+    background: #ad1434;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .hover-section .modal-content a {
+	  color: #157db6;
+  }
+</style>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+
+  <div class="modal-content">
+    <span id="button-close1" class="close">&times;</span>
+    <form id="form_0" data-remote="true" action="/sender" method="post">
+      <h2 style="color: #CCCC00">Ciao. Non risulti residente nel Comune di Milano.</h2>
+      <p style="font-size: large">Se sei un City User, ti chiediamo di auto-certificare il tuo rapporto continuativo con la città.<br/> Per visualizzare il link di accesso al modulo di auto-certificazione, ti chiediamo di confermare la tua richiesta cliccando sul bottone rosso <b>CONTINUA</b>.<br/> Per informazioni, consulta la pagina di <a href='https://partecipazione.comune.milano.it/pages'>Aiuto</a>.</p>
+<center>
+        <input type="submit" id="send-button" value="CONTINUA" style="padding: 10px" />
+        <div id="waiting-div" style="display: none" style='margin-bottom: 8px'><br /><img src="/gear.gif" style="width: 30px"><br /></div>
+      </center>
+    </form>
+  </div>
+</div>
+
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <center>
+<h2 style="color: #CCCC00">Ciao.</h2><p>La tua richiesta di partecipare è in attesa di essere autorizzata.<br /> Non appena il tuo profilo di City User sarà attivo, riceverai una mail di conferma con le istruzioni per accedere a Milano Partecipa.<br/>Ti ricordiamo se non hai già provveduto di compilare il modulo di auto-certificazione, <a href="https://servizicrm.comune.milano.it/decidim/autocertificazione" target="_blank">cliccando qui</a>.<br/>Grazie.</p>
+
+
+      <div style="height: 30px"></div>
+      <button id="button-close2" class="button card__button button--sc">Chiudi</button>
+    </center>
+  </div>
+</div>
+
+<div id="myModal3" class="modal">
+  <div class="modal-content">
+    <center>
+<h2 style="color: #CCCC00">Grazie.</h2><p>Per completare la tua richiesta ti chiediamo di compilare anche il modulo di auto-certificazione, <a href="https://servizicrm.comune.milano.it/decidim/autocertificazione" target="_blank">cliccando qui</a>.<br /> Non appena il tuo profilo di City User sarà attivo, riceverai una mail di conferma con le istruzioni per accedere a Milano Partecipa. Grazie.<br/> Per informazioni, consulta la pagina di <a href='https://partecipazione.comune.milano.it/pages'>Aiuto</a></p>
+
+      <div style="height: 30px"></div>
+      <button id="button-close3" class="button card__button button--sc">Chiudi</button>
+    </center>
+  </div>
+</div>
+
+<script>
+//<![CDATA[
+
+  document.getElementById('button-close1').onclick = function() {
+  document.getElementById('myModal').style.display = 'none';
+  }
+
+  document.getElementById('button-close2').onclick = function() {
+  document.getElementById('myModal2').style.display = 'none';
+  }
+
+
+  document.getElementById('button-close3').onclick = function() {
+  document.getElementById('myModal3').style.display = 'none';
+  }
+
+  $(document).ready(function() {
+  $("#send-button").click( function() {
+  $("#waiting-div").show();
+  $("#send-button").hide();
+
+  });
+  });
+
+//]]>
+</script>
+
+

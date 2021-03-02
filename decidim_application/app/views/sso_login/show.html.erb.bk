@@ -1,0 +1,10 @@
+  <div class="row">
+   <%= form_tag @saml_login_url, :method => :post, :id => "saml-form" do  %>
+     <%= params.each do |key, value|  %>
+	     <% if (key == 'SAMLRequest') %>
+		     <%= hidden_field_tag key, value  %>
+	     <% end %>
+    <% end %>
+    <button class="column button button--nomargin secondary light" type="submit" name="authorize">Autorizza</button>
+  <% end %>
+</div>

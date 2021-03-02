@@ -1,0 +1,377 @@
+<% add_decidim_meta_tags({
+                             description: present(@proposal).body,
+                             title: present(@proposal).title,
+                             url: proposal_url(@proposal.id)
+                         }) %>
+
+<%
+  edit_link(
+      resource_locator(@proposal).edit,
+      :edit,
+      :proposal,
+      proposal: @proposal
+  )
+%>
+
+<%= render partial: "voting_rules" %>
+<% if component_settings.participatory_texts_enabled? %>
+  <div class="row column">
+    <div class="section text-medium">
+      <%= t(".back_to") %> <u><%= link_to translated_attribute(@participatory_text.title), main_component_path(current_component) %></u>
+    </div>
+  </div>
+<% end %>
+<% if @proposal.emendation? && @proposal.state == 'waiting' %>
+     <div class='row column'>
+        <div class='callout announcement mb-sm warning cell-announcement'>
+                <%= "Questa osservazione per la proposta #{@proposal.title} è in fase di 'Non risposto'." %>
+        </div>
+     </div>
+<% else %>
+    <%= emendation_announcement_for @proposal %>
+<% end %>
+<div class="row column view-header">
+  <% if @proposal.emendation? %>
+    <h2 class="heading2"><%= t(".changes_at_title", title: present(@proposal.amendable).title(links: true, html_escape: true)) %></h2>
+  <% else %>
+    <h2 class="heading2"><%= present(@proposal).title(links: true, html_escape: true) %></h2>
+  <% end %>
+  <% unless component_settings.participatory_texts_enabled? %>
+    <%= cell("decidim/coauthorships", @proposal, has_actions: true, size: 3, context: { current_user: current_user }) %>
+
+  <% end %>
+</div>
+<div class="row">
+  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+
+
+
+
+    <% if current_user == nil %>
+      <!-- UTENTE NON LOGGATO -->
+      <% if component_settings.amendments_enabled? %>
+		<button onclick="showModal()" class="amend_button_card_cell button secondary hollow expanded button--icon button--sc">Aggiungi un'osservazione</button>
+	  <% end %>
+    <% elsif current_user != nil && !current_user.officialized? && !current_user.form_inviato? %>
+      <!-- UTENTE NON UFFICIALIZZATO -->
+      <% if component_settings.amendments_enabled? %>
+		<button onclick="document.getElementById('myModal').style.display = 'block';" class="amend_button_card_cell button secondary hollow expanded button--icon button--sc">Aggiungi un'osservazione</button>
+	  <% end %>
+    <% elsif current_user != nil && !current_user.officialized? && current_user.form_inviato? %>
+      <% if component_settings.amendments_enabled? %>
+		<button onclick="document.getElementById('myModal2').style.display = 'block';" class="amend_button_card_cell button secondary hollow expanded button--icon button--sc">Aggiungi un'osservazione</button>
+	  <% end %>
+    <% elsif current_user != nil && (current_user.admin? || current_user.officialized?) %>
+      <!-- UTENTE UFFICILIZZATO -->
+      <% if @proposal.amendable? && allowed_to?(:edit, :proposal, proposal: @proposal) %>
+        <form action="/edit_not_allowed" method="get" data-remote="true">
+          <input type="hidden" name="url" value="<%= request.env['REQUEST_URI'] %>" />
+          <input type="hidden" name="proposal_id" value="<%= @proposal.id %>" />
+          <input type="submit" value="<%= t(".edit_proposal") %>" class="button secondary hollow expanded button-sc button--icon follow-button" />
+        </form>
+        <%#= link_to t(".edit_proposal"), edit_proposal_path(@proposal), class: "button secondary hollow expanded button-sc button--icon follow-button" %>
+      <% else %>
+        <%= amend_button_for @proposal %>
+      <% end %>
+    <% end %>
+
+
+
+
+
+    <%= emendation_actions_for @proposal %>
+
+    <% if current_settings.votes_enabled? || show_endorsements_card? || current_user %>
+      <% if @proposal.withdrawn? %>
+        <div class="card">
+          <div class="card__content">
+            <% if current_settings.votes_enabled? %>
+              <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <div class="card">
+          <div class="card__content">
+            <% if current_settings.votes_enabled? %>
+              <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
+              <%= render partial: "vote_button", locals: { proposal: @proposal, from_proposals_list: false } %>
+            <% end %>
+            <%= render partial: "endorsements_card_row", locals: { proposal: @proposal } %>
+            <br>
+            <%= follow_button_for(@proposal) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= amenders_list_for(@proposal) %>
+
+    <%= resource_reference(@proposal) %>
+    <%#= cell("decidim/fingerprint", @proposal) %>
+    <%= render partial: "decidim/shared/share_modal" %>
+    <%= embed_modal_for proposal_proposal_widget_url(@proposal, format: :js) %>
+    <%= cell "decidim/proposals/proposal_link_to_collaborative_draft", @proposal %>
+    <%= cell "decidim/proposals/proposal_link_to_rejected_emendation", @proposal %>
+  </div>
+  <div class="columns mediumlarge-8 mediumlarge-pull-4">
+      <div class="section">
+      <%# if @proposal.emendation? && @proposal.versions.nil? %>
+      <% if @proposal.emendation? %>
+
+          <% if @proposal.state == 'waitingw' %>
+              <%# niente  %>
+          <% else %>
+              <%= cell("decidim/diff", @proposal.versions.last)  %>
+          <% end %>
+      <% elsif not ["section","subsection"].include? @proposal.participatory_text_level %>
+        <%== cell("decidim/proposals/proposal_m", @proposal, full_badge: true).badge %>
+        <%= simple_format present(@proposal).body(links: true, strip_tags: true), nil, sanitize: false %>
+      <% end %>
+      <% if component_settings.geocoding_enabled? %>
+        <%= render partial: "decidim/shared/static_map", locals: { icon_name: "proposals", geolocalizable: @proposal } %>
+      <% end %>
+      <%= cell "decidim/proposals/proposal_tags", @proposal %>
+    </div>
+        <% @amendment ||= Decidim::Amendment.find_by(decidim_emendation_id: @proposal.id) %>
+        <% if(@amendment) %>
+                <%#= @amendment.answer %>
+                <%= cell("decidim/announcement", amendment_reason_callout_args) if !@amendment.answer.nil? %>
+        <% else %>
+          <%= cell("decidim/announcement", proposal_reason_callout_args) if @proposal.answered? %>
+        <% end %>
+
+        <%#= cell("decidim/announcement", proposal_reason_callout_args) if @proposal.answered? %>
+    <%#= cell("decidim/announcement",@amendment.answer.to_s) %>
+
+    <%= linked_resources_for @proposal, :results, "included_proposals" %>
+    <%= linked_resources_for @proposal, :projects, "included_proposals" %>
+    <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
+    <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
+
+    <%= cell "decidim/proposals/endorsers_list", @proposal, context: { current_user: current_user } %>
+    <%= amendments_for @proposal %>
+  </div>
+</div>
+
+<%= attachments_for @proposal %>
+
+<% if current_user != nil && (current_user.admin? || current_user.officialized?) %>
+  <%= comments_for @proposal %>
+<% end %>
+
+<%=
+  render partial: "decidim/shared/flag_modal", locals: {
+      reportable: @proposal,
+      form: @report_form,
+      url: decidim.report_path(sgid: @proposal.to_sgid.to_s)
+  }
+%>
+
+
+<style>
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-content h2 {
+  color: #d6012e !important;
+}
+
+.modal-content center input[type="submit"] {
+  background: #d6012e;
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px !important;
+  cursor: pointer;
+  white-space: pre-wrap !important;
+}
+
+.modal-content center input[type="submit"]:hover {
+  background: #e01b45;
+}
+
+.modal-content center input[type="submit"]:active {
+  background: #ad1434;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+
+
+<!-- The modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+
+  <div class="modal-content">
+    <span id="button-close1" class="close">&times;</span>
+    <form id="form_0" data-remote="true" action="/sender" method="post">
+      <h2 style="color: #CCCC00">Ciao. Non risulti residente nel Comune di Milano.</h2>
+      <p style="font-size: large">Se sei un City User, ti chiediamo di auto-certificare il tuo rapporto continuativo con la città.<br/> Per visualizzare il link di accesso al modulo di auto-certificazione, ti chiediamo di confermare la tua richiesta cliccando sul bottone rosso <b>CONTINUA</b>.<br/> Per informazioni, consulta la pagina di <a href='https://partecipazione.comune.milano.it/pages'>Aiuto</a>.</p>
+<center>
+        <input type="submit" id="send-button" value="CONTINUA" style="padding: 10px" />
+        <div id="waiting-div" style="display: none" style='margin-bottom: 8px'><br /><img src="/gear.gif" style="width: 30px"><br /></div>
+      </center>
+    </form>
+  </div>
+</div>
+
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <center>
+<h2 style="color: #CCCC00">Ciao.</h2><p>La tua richiesta di partecipare è in attesa di essere autorizzata.<br /> Non appena il tuo profilo di City User sarà attivo, riceverai una mail di conferma con le istruzioni per accedere a Milano Partecipa.<br/>Ti ricordiamo se non hai già provveduto di compilare il modulo di auto-certificazione, <a href="https://servizicrm.comune.milano.it/decidim/autocertificazione" target="_blank">cliccando qui</a>.<br/>Grazie.</p>
+
+
+      <div style="height: 30px"></div>
+      <button id="button-close2" class="button card__button button--sc">Chiudi</button>
+    </center>
+  </div>
+</div>
+
+<div id="myModal3" class="modal">
+  <div class="modal-content">
+    <center>
+<h2 style="color: #CCCC00">Grazie.</h2><p>Per completare la tua richiesta ti chiediamo di compilare anche il modulo di auto-certificazione, <a href="https://servizicrm.comune.milano.it/decidim/autocertificazione" target="_blank">cliccando qui</a>.<br /> Non appena il tuo profilo di City User sarà attivo, riceverai una mail di conferma con le istruzioni per accedere a Milano Partecipa. Grazie.<br/> Per informazioni, consulta la pagina di <a href='https://partecipazione.comune.milano.it/pages'>Aiuto</a></p>
+
+      <div style="height: 30px"></div>
+      <button id="button-close3" class="button card__button button--sc">Chiudi</button>
+    </center>
+  </div>
+</div>
+
+<div id="myModal4" class="modal">
+  <div class="modal-content" style="width: 40%">
+    <center>
+      <h2 style="color: #CCCC00; font-size: 24px">Questa proposta non può essere modificata perché contiene dei <%= link_to "commenti", "/pages/proposte" %> e/o <%= link_to "supporti", "/pages/proposte" %></h2>
+      <div style="height: 30px"></div>
+      <button class="button card__button button--sc" onclick="edit_not_allowed_hide()">Chiudi</button>
+    </center>
+  </div>
+</div>
+
+
+<%= javascript_tag do -%>
+
+  function edit_not_allowed_hide() {
+    document.getElementById('myModal4').style.display = 'none';
+  }
+
+  document.getElementById('button-close1').onclick = function() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  document.getElementById('button-close2').onclick = function() {
+    document.getElementById('myModal2').style.display = 'none';
+  }
+
+
+  document.getElementById('button-close3').onclick = function() {
+    document.getElementById('myModal3').style.display = 'none';
+  }
+
+  $(document).ready(function() {
+  $("#send-button").click( function() {
+  $("#waiting-div").show();
+  $("#send-button").hide();
+
+  });
+  });
+
+
+<% end -%>
+
+<div id='login' class="reveal-overlay" style="display: none;"><div class="reveal" id="login2" style="width: 450px; display: none; top: 45px; padding: 15px" tabindex="-1">
+  <div class="reveal__header">
+    <h3 class="reveal__title" style="font-size: 24px">Per proseguire clicca su ACCEDI</h3>
+    <button id="close-button" onclick="closeModal()"  class="close-button" data-close="" aria-label="Close modal" type="button">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+    <div class="row">
+
+      <!--
+
+      <div class="columns medium-8 medium-centered" style="display:none">
+            <div>
+              <div class="field">
+              </div>
+              <div class="field">
+              </div>
+            </div>
+            <div class="actions">
+            </div>
+            <p class="text-center">
+            </p>
+          <p class="text-center">
+          </p>
+      </div>
+
+      -->
+      <div>
+         <center>
+         <a class="button expanded" style="color: white; width: 90%" href="/users/auth/saml">Accedi</a>
+        </center>
+      </div>
+    </div>
+</div>
+</div>
+
+<script>
+        /*document.getElementsByClassName("column").onclick = function() {
+                document.getElementById('login').style.display = 'block';
+                document.getElementById('login2').style.display = 'block';
+        };*/
+function showModal() {
+   document.getElementById('login').style.display = 'block';
+   document.getElementById('login2').style.display = 'block';
+}
+
+        function closeModal() {
+                document.getElementById('login2').style.display = 'none';
+                document.getElementById('login').style.display = 'none';
+
+        }
+
+
+</script>
+

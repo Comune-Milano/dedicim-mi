@@ -1,0 +1,23 @@
+<% if data[:label].parameterize != 'titolo' %>
+  <div class="diff-for-<%= data[:label].parameterize %>">
+    <div class="row">
+      <h3 class="section-heading mediumlarge-12 columns">
+	  <% if data[:label] != 'Inserisci il testo della tua osservazione' %>
+	      <%= data[:label] %>
+          <% else %>
+              Testo
+          <% end %>
+      </h3>
+    </div>
+
+    <div class="row" id="diff_unified">
+      <%= diff_unified(data) %>
+    </div>
+
+    <div class="row hide" id="diff_split">
+      <%= diff_split(data, "left") %>
+
+      <%= diff_split(data, "right") %>
+    </div>
+  </div>
+<% end %>

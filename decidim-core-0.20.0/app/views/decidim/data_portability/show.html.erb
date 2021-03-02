@@ -1,0 +1,17 @@
+<div class="row data-portability">
+  <strong><%= t(".download_data") %></strong>
+  <p><%= t(".download_data_description", user_email: current_user.email).html_safe %></p>
+  <%= button_to t(".request_data"), export_data_portability_path, class: "button", data: { disable: true } %>
+
+<br />
+<p>
+<strong><%= t(".description1") %></strong><br />
+<%= t(".description2").html_safe %><br />
+<%= t(".description3") %><br /><br />
+<strong><%= t(".description4") %></strong><br />
+<%= t(".description5") %><br />
+<%= t(".description6") %><br />
+</p>
+
+
+</div>

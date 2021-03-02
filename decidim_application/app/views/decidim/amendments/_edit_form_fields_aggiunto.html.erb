@@ -1,0 +1,58 @@
+<%= form.fields_for :emendation_params, form.object.emendation_params do |emendation_form| %>
+  
+  <% amendable.attributes.each do |key, value| %>
+   
+    <% if key == 'id' %>   
+      <% @proposal = Decidim::Proposals::Proposal.find(value)  %>
+      <% @component = Decidim::Component.find(@proposal.decidim_component_id) %>
+      <% if defined? @component.settings.testo_originale %>
+        <% @testo_originale = @component.settings.testo_originale %>
+      <% else %>
+	<% @testo_originale = "false" %>
+      <% end %>
+    <% end %>
+
+    <% key = key.to_sym %>
+    
+    <% if amendable.amendable_fields.include?(key) %>
+
+      <% if [:title].include?(key) %>
+        
+          <div class="field hashtags__container">
+            <%= emendation_form.form_field_for key,
+               class: "js-hashtags",
+               hashtaggable: true,
+               readonly: true,
+               label: amendments_form_fields_label(key),
+               value: amendments_form_fields_value(original, key) %>
+          </div>
+        
+      <% end %>
+
+      <% if [:body].include?(key) %>
+        <% if @testo_originale.to_s.include? 'true' %>
+          <% val = amendments_form_fields_value(original, key) %>
+        <% else %>
+          <% val = '' %>
+        <% end %>
+        <div class="field hashtags__container">
+          <%= emendation_form.form_field_for key,
+              class: "js-hashtags",
+              hashtaggable: true,
+              #label: amendments_form_fields_label(key),
+              label: "Inserisci il testo della tua osservazione",
+              value: val %>
+        </div>
+      <% end %>
+
+      <% if form.object.errors[key].present? %>
+        <% form.object.errors.full_messages_for(key).each do |message| %>
+          <small class="form-error is-visible"><%= message %></small>
+        <% end %>
+      <% end %>
+    
+    <% end %>
+    
+  <% end %>
+  
+<% end %>

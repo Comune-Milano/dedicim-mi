@@ -1,0 +1,45 @@
+<div class="reveal flag-modal" id="flagModal" data-reveal style="width: 50%" >
+  <div class="reveal__header">
+    <h3 class="reveal__title"><%= t(".title") %></h3>
+    <button class="close-button" data-close aria-label="<%= t(".close") %>" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <% if reportable.reported_by? current_user %>
+    <p><%= t(".already_reported") %></p>
+  <% else %>
+    <p><%= t(".description") %> <%= t(".description2") %></p>
+    <p><%= t(".description3") %></p>
+    <p><%= t(".description4") %></p>
+    <%= decidim_form_for form, url: url, method: :post do |f| %>
+      <%#= f.collection_radio_buttons :reason, [[:spam, t(".spam")], [:offensive, t(".offensive")], [:does_not_belong, t(".does_not_belong", organization_name: current_organization.name)]], :first, :last do |builder| %>
+        <%#= builder.label { builder.radio_button + builder.text } %>
+      <%# end %>
+      <%#= f.text_area :details, rows: 4 %>
+      <%#= f.submit t(".report") %>
+      <input type="radio" id="report_reason_offensive" name="reason" value="offensive">
+      <label for="report_reason_offensive"><%= t(".motivo1") %></label><br>
+      <input type="radio" id="report_reason_does_not_belong" name="reason" value="does_not_belong" >
+      <label for="report_reason_does_not_belong"><%= t(".motivo2") %></label><br>
+      <textarea id="report_details" name="details" style="width: 100%;" rows="5">
+      </textarea>
+      <input type="submit" class="button expanded" value="<%= t(".report2") %>" style="width: auto" />
+   <% end %>
+  <% end %>
+</div>
+
+
+<%= javascript_tag do -%>
+/*
+  $('input[name="reason"]').click(function() {
+        var $radio = $(this);
+        if ($radio.val() == 'offensive') {
+          $("#report_details").val('');
+          $("#report_details").hide();
+        } else if($radio.val() == 'does_not_belong') {
+          $("#report_details").show();
+          $("#report_details").focus();
+        }
+  });
+*/
+<% end -%>

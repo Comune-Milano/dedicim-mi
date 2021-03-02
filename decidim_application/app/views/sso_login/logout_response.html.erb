@@ -1,0 +1,8 @@
+<html>
+	<body onLoad="document.getElementById('form').submit();">
+		<form id='form' name='form' method='POST' action="<%= url %>">
+			<input name="SAMLResponse" value="<%= saml_request %>" type="hidden"/>
+			<input name="RelayState" value="<%= relay_state %>" type="hidden"/>
+		</form>
+	</body>
+</html>

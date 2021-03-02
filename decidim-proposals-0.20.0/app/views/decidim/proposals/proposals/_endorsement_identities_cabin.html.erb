@@ -1,0 +1,14 @@
+<%= javascript_include_tag "decidim/proposals/identity_selector_dialog" %>
+<% if current_user && Decidim::UserGroups::ManageableUserGroups.for(current_user).verified.any? %>
+  <button id="select-identity-button" type="button" name="button" class="button small compact light button--sc <%= fully_endorsed ? "success": "secondary" %>" style="font-size: 11px" >
+    <%#= t(".endorse") %>
+    <%= fully_endorsed ? t('decidim.proposals.proposal_endorsements_helper.endorsement_button.already_endorsed') : t('decidim.proposals.proposal_endorsements_helper.endorsement_button.endorse') %>    
+  </button>
+
+  <div class="reveal collapse"
+       id="user-identities"
+       data-reveal data-refresh-url="<%= identities_proposal_proposal_endorsement_path(proposal) %>">
+  </div>
+<% else %>
+    <%= endorsement_button(proposal, false) %>
+<% end %>

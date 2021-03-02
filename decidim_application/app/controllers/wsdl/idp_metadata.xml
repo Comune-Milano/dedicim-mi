@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EntityDescriptor entityID="IDP_CdM" xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:query="urn:oasis:names:tc:SAML:metadata:ext:query" xmlns:mdattr="urn:oasis:names:tc:SAML:metadata:attribute" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" xmlns:x509qry="urn:oasis:names:tc:SAML:metadata:X509:query" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+    <IDPSSODescriptor WantAuthnRequestsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo>                
+                <ds:X509Data>
+                    <ds:X509Certificate>
+MIIGyjCCBbKgAwIBAgIQMDVbS2tJ6J3vDEVhyF9f5TANBgkqhkiG9w0BAQsFADCBlTELMAkGA1UE
+BhMCSVQxEDAOBgNVBAgMB0JlcmdhbW8xGTAXBgNVBAcMEFBvbnRlIFNhbiBQaWV0cm8xIzAhBgNV
+BAoMGkFjdGFsaXMgUy5wLkEuLzAzMzU4NTIwOTY3MTQwMgYDVQQDDCtBY3RhbGlzIE9yZ2FuaXph
+dGlvbiBWYWxpZGF0ZWQgU2VydmVyIENBIEcyMB4XDTE5MDcwOTEwMzUxMFoXDTIxMDcwOTEwMzUx
+MFowaTELMAkGA1UEBhMCSVQxDzANBgNVBAgMBk1pbGFubzEPMA0GA1UEBwwGTWlsYW5vMRkwFwYD
+VQQKDBBDb211bmUgZGkgTWlsYW5vMR0wGwYDVQQDDBRzc28uY29tdW5lLm1pbGFuby5pdDCCASIw
+DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANUjrUXNd8IN916P9eropEXNvRb83aHP7bSQEIdw
+Skraa7FKVHJKZ9QqZIfQdFjpsog9z7a1SjXbwVf+sYNktGWPnf5W1ADuWACCc7qQD1b+0FH49SIg
+Dh161YjDd4X8Bpz3VL5S5KX3vzlyxoOGs0iAaX8UFLn/d+uHUDW8r7SjxTBd/kSEy/K+h1QqGAhM
+i3nJAgUsLF93+LZi4NqctTdKciieD5YkBGjaiDivvDca8K2TXpHSMBMqxi9tYJ3yqMKgwKW/50bC
+RyqfQZKYm4JFtl0HmJuGNfdzen1+saRwIftyqr03nvvuVzr+L8XcSpimO7zPsgw/vfnnH+au5gEC
+AwEAAaOCAz8wggM7MAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUYv67J4pkRO1ollpYeaHbWiat
+/7swfgYIKwYBBQUHAQEEcjBwMDsGCCsGAQUFBzAChi9odHRwOi8vY2FjZXJ0LmFjdGFsaXMuaXQv
+Y2VydHMvYWN0YWxpcy1hdXRob3ZnMjAxBggrBgEFBQcwAYYlaHR0cDovL29jc3AwOS5hY3RhbGlz
+Lml0L1ZBL0FVVEhPVi1HMjAfBgNVHREEGDAWghRzc28uY29tdW5lLm1pbGFuby5pdDBRBgNVHSAE
+SjBIMDwGBiuBHwEUATAyMDAGCCsGAQUFBwIBFiRodHRwczovL3d3dy5hY3RhbGlzLml0L2FyZWEt
+ZG93bmxvYWQwCAYGZ4EMAQICMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATBIBgNVHR8E
+QTA/MD2gO6A5hjdodHRwOi8vY3JsMDkuYWN0YWxpcy5pdC9SZXBvc2l0b3J5L0FVVEhPVi1HMi9n
+ZXRMYXN0Q1JMMB0GA1UdDgQWBBSunXPyVfG7rCJWK9TGtC7gnQZhmjAOBgNVHQ8BAf8EBAMCBaAw
+ggF8BgorBgEEAdZ5AgQCBIIBbASCAWgBZgB1AFzcQ5L+5qtFRLFemtRW5hA3+9X6R9yhc5SyXub2
+xw7KAAABa9ZWV/EAAAQDAEYwRAIgT6TAe6+4Q668HbKhn4rhyPqoFc7eNNBs1/bEDVMI2woCIBLM
+6rE2DWHl2KX4wkLjnjErA907SEsoGBUbEYjWLGD2AHYARJRlLrDuzq/EQAfYqP4owNrmgr7YyzG1
+P9MzlrW2gagAAAFr1lZXzwAABAMARzBFAiEAtuN3G6Mm88p1fzeXUCRDpU4j0acPNeJeKInTBSVO
+I5sCICi3Yiw6end7nJ71wd51WhCPoR46Ww3l/H7l5xvZuUCBAHUA7ku9t3XOYLrhQmkfq+GeZqMP
+fl+wctiDAMR7iXqo/csAAAFr1lZVfwAABAMARjBEAiAxNZ951D8RTT6lFizhhvSdYxrjS28kH9kg
+kMjgjfOiRgIgPCQz/Ja7+xcZEs/puCbSjr1ZCbWKZOzCMBo0/P831vUwDQYJKoZIhvcNAQELBQAD
+ggEBAKBAvkYLyjkZM+QRUNbKjoVTFGZxCmN5DP0cKZaZtYiEzUiedJzSPYafflsD6h3V11ZcRtDX
+/+Fix5U/C7OJsZFZPMT6RKLz8+HKW6lIuw6pn6DzU8Q102aBPMtiPr569GX376uCJUHMymM8GdIz
+DTxYdFy7zTRdTdX6dq/w6exBWLcsCrKA/cDFc3gJDCvmCJVc/DdU1tpt0kno51+JUQI65IhgO3xY
+efo15rzsZjvXbi9zSCMooguczhMXmqda3GoKRZsSSCrkNkLQ3nWILf3QGg9zjwDw+YcwihE4pyOy
+RdhobqbHvS0j2I0xl/5COwVNIrLNwclkYF11ua/RFck=
+                    </ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <ArtifactResolutionService index="0" isDefault="true" Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso.comune.milano.it:443/openam/ArtifactResolver/metaAlias/Servizi/IDP_CdM"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso.comune.milano.it:443/openam/IDPSloPOST/metaAlias/Servizi/IDP_CdM" ResponseLocation="https://sso.comune.milano.it:443/openam/IDPSloPOST/metaAlias/Servizi/IDP_CdM"/>
+        <ManageNameIDService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso.comune.milano.it:443/openam/IDPMniPOST/metaAlias/Servizi/IDP_CdM" ResponseLocation="https://sso.comune.milano.it:443/openam/IDPMniPOST/metaAlias/Servizi/IDP_CdM"/>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+        <NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</NameIDFormat>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sso.comune.milano.it:443/openam/SSOPOST/metaAlias/Servizi/IDP_CdM"/>
+        <NameIDMappingService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso.comune.milano.it:443/openam/NIMSoap/metaAlias/Servizi/IDP_CdM"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://sso.comune.milano.it:443/openam/AIDReqSoap/IDPRole/metaAlias/Servizi/IDP_CdM"/>
+        <AssertionIDRequestService Binding="urn:oasis:names:tc:SAML:2.0:bindings:URI" Location="https://sso.comune.milano.it:443/openam/AIDReqUri/IDPRole/metaAlias/Servizi/IDP_CdM"/>
+    </IDPSSODescriptor>
+</EntityDescriptor>
+
+
+

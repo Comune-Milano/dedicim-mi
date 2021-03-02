@@ -1,0 +1,104 @@
+class SsoLoginController < ApplicationController
+    # skip_before_action :verify_authenticity_token
+    def login
+	    logger.warn "*** BEGIN RAW REQUEST HEADERS ***"
+        self.request.headers.each do |header|
+          logger.warn "HEADER KEY: #{header[0]}"
+          logger.warn "HEADER VAL: #{header[1]}"
+        end
+        logger.warn "*** END RAW REQUEST HEADERS ***"
+        # @user = Decidim::User.find_by(email: params[:CDM_CF].downcase)
+	cf = self.request.headers['HTTP_CDM_CF']
+        name = self.request.headers['HTTP_CDM_NAME']
+        surname = self.request.headers['HTTP_CDM_SURNAME']
+        mail = cf + '@testazure.com' #self.request.headers['HTTP_CDM_MAIL']
+        @user = Decidim::User.find_by(codice_fiscale: cf)
+        # render :json => @user
+        if(@user) # se l'utente esiste lo autentico
+            sign_in @user
+           #  redirect_to "/decidim"
+
+        else # creo l'utente
+        current_organization = Decidim::Organization.first
+          regular_user = Decidim::User.find_or_initialize_by(codice_fiscale: cf)
+          password = SecureRandom.urlsafe_base64
+          regular_user.update!(
+            name: name + ' ' + surname,
+            email: mail,
+            nickname: Decidim::UserBaseEntity.nicknamize(name, organization: current_organization),
+            password: password,
+            password_confirmation: password,
+            confirmed_at: Time.current,
+            officialized_at: Time.current,
+            officialized_as: {'ca': '','en': '','es': '','it': ''},
+            locale: I18n.default_locale,
+            organization: current_organization,
+            tos_agreement: true,
+            #personal_url: Faker::Internet.url,
+            #about: Faker::Lorem.paragraph(2),
+            accepted_tos_version: current_organization.tos_version,
+            codice_fiscale: cf
+          )
+            sign_in regular_user
+        end
+          # redirect_to "/"
+        
+        # session[:user] = @user.id
+        
+        
+    end
+
+    def pippo
+	    logger.warn "*** BEGIN RAW REQUEST HEADERS ***"
+	self.request.headers.each do |header|
+	  logger.warn "HEADER KEY: #{header[0]}"
+	  logger.warn "HEADER VAL: #{header[1]}"
+	end
+	logger.warn "*** END RAW REQUEST HEADERS ***"
+	name = self.request.headers['HTTP_CDM_MAIL']
+	render :json => name
+   	#  request.env.to_hash.select{ |key,val| ! key.starts_with?("rack") && ! key.starts_with?("action_")}
+    end
+
+    def debug
+    	render :json => params
+    end
+
+    def logout
+#	cf = self.request.headers['HTTP_CDM_CF']
+#	@user = Decidim::User.find_by(codice_fiscale: cf)
+#	session.delete(key)
+	reset_session
+      	redirect_to ENV["SERVER_COMUNE"] + '/cdmlogout/Logout.html'
+    end
+
+    def cortesia
+       # render :file => "app/views/layouts/decidim/courtesy_page.html.erb"
+       render 'layouts/decidim/courtesy_page'
+    end
+
+    def post
+        #    params = create_params(settings, params)
+    #params_prefix = (settings.idp_sso_target_url =~ /\?/) ? '&' : '?'
+	    log_1 = params.delete("SAMLRequest").gsub(/\n/, "")
+	#saml_request = Base64.encode64(log_1).gsub(/\n/, "")
+        saml_request = CGI.unescape(log_1)
+	logger.warn "params.delete('SAMLRequest')" + log_1.to_json
+	logger.warn " unescape " + saml_request
+#	    saml_request = params.delete("SAMLRequest").gsub('+',' ')
+       # request_params = "#{params_prefix}SAMLRequest=#{saml_request}"
+       # request_params["SAMLRequest"] = Base64.encode64(@request).gsub(/\n/, "")
+       # str = "<html><body onLoad=\"document.getElementById('form').submit();\">\n"
+       str = "<html><body>\n"
+        str += "<form id='form' name='form' method='POST' action=\"https://sso.comune.milano.it:443/openam/SSOPOST/metaAlias/Servizi/IDP_CdM\">\n"
+        # str += "<form id='form' name='form' method='POST' action=\"#{settings.idp_sso_target_url}\">\n"
+       # str += "<input name='RelayState' value='ruby-saml' type='hidden' />\n"
+       # params.each_pair do |key, value|
+           str += "<input name=\"SAMLRequest\" value=\"#{log_1}\"  />\n"
+       # end
+	  str += " <input type='submit'> "
+          str += "</form></body></html>\n"
+        render inline: str
+    end
+
+end

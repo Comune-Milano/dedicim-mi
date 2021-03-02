@@ -1,0 +1,16 @@
+<% manifest.settings(settings_name).attributes.each do |field_name, settings_attribute| %>
+  <%# if field_name.to_s == "proposal_edit_before_minutes" %>
+  <!-- <div style="display:none"> -->
+  <%# end %>       
+<%= settings_attribute_input(
+    form,
+    settings_attribute,
+    field_name,
+    label: t("decidim.components.#{manifest.name}.settings.#{settings_name}.#{field_name}"),
+    tabs_prefix: tabs_prefix,
+    help_text: help_text_for_component_setting(field_name, settings_name, manifest.name)
+) %>
+  <%# if  field_name.to_s == "proposal_edit_before_minutes" %>
+  <!-- </div> -->
+  <%# end %>
+<% end %>

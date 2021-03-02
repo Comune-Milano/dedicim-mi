@@ -1,0 +1,48 @@
+<div class="row">
+  <%= decidim_form_for(@account, url: account_path, method: :put, html: { autocomplete: "nope" }) do |f| %>
+    <input autocomplete="off" name="hidden" type="password" style="display:none;">
+
+    <div class="columns large-4" style="display: none">
+      <%= f.upload :avatar %>
+    </div>
+
+    <div class="columns large-3">
+        <img src="/assets/decidim/default-avatar-ff9cda3baf31339d38e9f694ffe1ccf14f00bda2c8d217c292977d4a7c727cc6.svg">
+    </div>
+
+    <div class="columns large-8 end">
+      <%#= f.text_field :name %>
+      <%#= f.text_field :nickname %>
+      <%#= f.email_field :email %>
+      <%#= f.url_field :personal_url %>
+      <%#= f.text_area :about, rows: 5 %>
+
+      <%= f.hidden_field :name %>
+      <%= f.text_field :nickname %>
+      <p style="font-size: small">Si prega di inserire solo caratteri alfanumerici.</p>
+      <%= f.hidden_field :email %>
+      <%#= f.url_field :personal_url %>
+      <%= f.hidden_field :personal_url %>
+      <%= f.hidden_field :about, rows: 5 %>
+
+
+
+      <% if @account.errors[:password].any? || @account.errors[:password_confirmation].any? %>
+        <%= render partial: "password_fields", locals: { form: f } %>
+      <% else %>
+
+        <!--
+        <p>
+          <a data-toggle="passwordChange" class="change-password"><%#= t ".change_password" %></a>
+        </p>
+      -->
+        <div id="passwordChange" class="toggle-show" data-toggler=".is-expanded">
+          <%= render partial: "password_fields", locals: { form: f } %>
+        </div>
+      <% end %>
+
+      <%= f.submit t(".update_account"), disable_with: true %>
+  <% end %>
+  </div>
+</div>
+

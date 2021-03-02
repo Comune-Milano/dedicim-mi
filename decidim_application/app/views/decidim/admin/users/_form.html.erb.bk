@@ -1,0 +1,16 @@
+<div class="row column">
+  <%= form.text_field :name, label: t(".name") %>
+</div>
+
+<div class="row column">
+  <%= form.email_field :email, label: t(".email") %>
+</div>
+
+<label for="codice_fiscale">Codice fiscale *</label>
+<div class="row column">
+  <input type="text" name="codice_fiscale" id="codice_fiscale" maxlength="25" required >
+</div>
+
+<div class="row column">
+  <%= form.select :role, @form.available_roles_for_select, label: t(".role") %>
+</div>

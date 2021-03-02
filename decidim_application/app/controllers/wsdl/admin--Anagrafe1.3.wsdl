@@ -1,0 +1,1348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://comune.milano.it/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://comune.milano.it/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s1="http://comune.milano.it/DatiAnagrafe2009.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://comune.milano.it/">
+      <s:import namespace="http://comune.milano.it/DatiAnagrafe2009.xsd"/>
+      <s:element name="getRicercaIndividuiXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Cognome" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DataNascitaDAL" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DataNascitaAL" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DataMorteDAL" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DataMorteAL" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="ComuneNascita" type="s:int"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Sesso" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CodiceFiscale" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="NumeroFamiglia" type="s:int"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CartaIdentita" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="TipoRicerca" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="FiltroEstrazione" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getRicercaIndividuiXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getRicercaIndividuiXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDatiPuntualiXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDatiPuntualiXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getDatiPuntualiXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getIndirizziStoriciXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getIndirizziStoriciXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getIndirizziStoriciXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMovimentiMigratoriXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMovimentiMigratoriXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getMovimentiMigratoriXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCarteIdentitaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCarteIdentitaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getCarteIdentitaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLoginXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="NewPwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="FlagScadenza" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLoginXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getLoginXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLoginWithCheckXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="NewPwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="FlagScadenza" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="NumTentativi" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getLoginWithCheckXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getLoginWithCheckXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPermessiSoggiornoXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPermessiSoggiornoXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getPermessiSoggiornoXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getEventiXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getEventiXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getEventiXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFamigliaByMatricolaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFamigliaByMatricolaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getFamigliaByMatricolaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDiffidaByMatricolaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDiffidaByMatricolaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getDiffidaByMatricolaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPassSostaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Targa" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPassSostaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getPassSostaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getResidentibyIndirizzoXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Toponimo" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="DaCivico" type="s:int"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DaEsponente" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="ACivico" type="s:int"/>
+            <s:element maxOccurs="1" minOccurs="0" name="AEsponente" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getResidentibyIndirizzoXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getResidentibyIndirizzoXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPraticheByMatricolaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPraticheByMatricolaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getPraticheByMatricolaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCittadinanzeByMatricolaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCittadinanzeByMatricolaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getCittadinanzeByMatricolaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCarteIdentitainScadXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DataDa" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="DataA" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCarteIdentitainScadXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getCarteIdentitainScadXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDatiCatastalibyMatricolaXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="Applicazione" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Operatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="PwdOperatore" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="Account" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="1" name="Matricola" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDatiCatastalibyMatricolaXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" ref="s1:getDatiCatastalibyMatricolaXMLResult"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://comune.milano.it/DatiAnagrafe2009.xsd">
+      <s:element name="getRicercaIndividuiXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="ListaIndividui" type="s1:Individui"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Individui">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroFamiglia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cognome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceFiscale" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Indirizzo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="StatoCivile" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="RapportoParentela" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceVia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CivicoIntero" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CivicoBarrato" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getDatiPuntualiXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="DatiIndividuo" type="s1:DatiPuntuali"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiPuntuali">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroFamiglia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cognome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Paternita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Maternita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NazioneNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceFiscale" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FlagValiditaCFIS" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Indirizzo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="StatoCivile" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="RapportoParentela" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataCittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataMatrimonio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataCessazioneMatrimonio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneMatrimonio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaMatrimonio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Coniuge" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataEmigrazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneEmigrazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaEmigrazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataDecesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneDecesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaDecesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Ecopass" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="INASAIA" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataIngressoFamiglia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cap" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="StatusAnagrafico" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FlagStatus1" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FlagStatus2" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceVia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CivicoIntero" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CivicoBarrato" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComuneNascita" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComuneMatrimonio" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComuneEmigrazione" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComuneDecesso" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceNazioneNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceCittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceStatusAnagrafico" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceStatoCivile" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceParentela" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Zona" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataInizioResidenza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceCimitero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataAIRE" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneAIRE" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="StatoAIRE" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="IndirizzoAIRE" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CapAIRE" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataImmigrazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneImmigrazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaImmigrazione" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getIndirizziStoriciXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="Indirizzi" type="s1:IndirizziStorici"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="IndirizziStorici">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Motivo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataInizio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataFine" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Indirizzo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataRegistrazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceVia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CivicoIntero" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CivicoBarrato" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getMovimentiMigratoriXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="Movimenti" type="s1:MovimentiMigratori"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MovimentiMigratori">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Motivo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataInizio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Comune" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Provincia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataProvvedimento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComune" type="s:integer"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getCarteIdentitaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="CarteID" type="s1:CarteIdentita"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CarteIdentita">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Numero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Comune" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Provincia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataRilascio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataScadenza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="MotivoRilascio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FlagDescrizione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Estero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataProroga" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComune" type="s:integer"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getLoginXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="DatiOperatore" type="s1:Login"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Login">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Codice" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Password" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Qualifica" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Ente" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Servizio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Menu" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag01" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag02" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag03" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag04" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag05" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag06" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag07" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag08" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag09" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag10" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag11" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag12" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag13" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag14" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag15" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag16" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag17" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag18" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag19" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag20" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag21" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag22" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag23" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag24" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag25" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag26" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag27" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag28" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag29" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag30" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag31" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Flag32" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TipoEnte" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TermColleg" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataScad" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneServizio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="FlagListe" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceOperatoreInterno" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneEstesaServizio" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getLoginWithCheckXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="DatiOperatore" type="s1:Login"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPermessiSoggiornoXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="Permessi" type="s1:PermessiSoggiorno"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PermessiSoggiorno">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Numero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Tipo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataRilascio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataScadenza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataDichiarazione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneQuestura" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaQuestura" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComune" type="s:integer"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getEventiXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="Eventi" type="s1:EventiIndividuo"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="EventiIndividuo">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Evento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneEvento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Data" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Comune" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Provincia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Anno" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Numero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="PSSTRRUU" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComune" type="s:integer"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getFamigliaByMatricolaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="Famiglia" type="s1:StatoFamiglia"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StatoFamiglia">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroFamiglia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cognome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="StatoCivile" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="RapportoParentela" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Dicitura" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceStatoCivile" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceParentela" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceFiscale" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getDiffidaByMatricolaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="Diffida" type="s1:DatiDiffida"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiDiffida">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Tipo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Motivo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Comune" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Provincia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceComune" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataInizio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataFine" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Note" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getPassSostaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="PassSosta" type="s1:DatiPassSosta"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiPassSosta">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Tipo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Numero" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Anno" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Stato" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Targa" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Ambito" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Indirizzo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroCivico" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="EsponenteCivico" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CategoriaUtenza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneCategoriaUtenza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Duplicati" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataRilascio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataInizioValidita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataFineValidita" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getResidentibyIndirizzoXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="ResidentibyIndirizzo" type="s1:DatiResidentibyIndirizzo"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiResidentibyIndirizzo">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Via" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceVia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroCivico" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="EsponenteCivico" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroFamiglia" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CognomeNome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="RapportoParentela" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroFamiglie" type="s:integer"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getPraticheByMatricolaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="PratichebyMatricola" type="s1:DatiPratichebyMatricola"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiPratichebyMatricola">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Descrizione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="IDProtocollo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataProtocollo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Note" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getCittadinanzeByMatricolaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="CittadinanzebyMatricola" type="s1:DatiCittadinanzebyMatricola"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiCittadinanzebyMatricola">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataInizio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataFine" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneEstesa" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneBreve" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DescrizioneLegge" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getCarteIdentitainScadXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="CarteIdentitainScad" type="s1:DatiCarteIdentitainScad"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiCarteIdentitainScad">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CognomeNome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sesso" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascita" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodiceFiscale" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Eta" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Minore" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Tipo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Numero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="MotivoRil" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Stato" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Espatrio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ComuneRil" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ProvinciaRil" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataRilascio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataScadenza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataProroga" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodCittadinanza" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodComuneRil" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Intestatario" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="IntestatarioCF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Indirizzo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Cap" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TimeStampELAB" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getDatiCatastalibyMatricolaXMLResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" minOccurs="0" name="DatiCatastalibyMatricola" type="s1:DatiCatastalibyMatricola"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DatiCatastalibyMatricola">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Matricola" type="s:integer"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sezione" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Foglio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Particella" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Subalterno" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Categoria" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getLoginWithCheckXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getLoginWithCheckXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEventiXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getEventiXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getEventiXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getEventiXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDatiPuntualiXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getDatiPuntualiXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRicercaIndividuiXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getRicercaIndividuiXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCarteIdentitaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getCarteIdentitaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDiffidaByMatricolaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getDiffidaByMatricolaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPermessiSoggiornoXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getPermessiSoggiornoXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFamigliaByMatricolaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getFamigliaByMatricolaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPassSostaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getPassSostaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPraticheByMatricolaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getPraticheByMatricolaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCarteIdentitainScadXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getCarteIdentitainScadXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDatiPuntualiXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getDatiPuntualiXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPermessiSoggiornoXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getPermessiSoggiornoXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPraticheByMatricolaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getPraticheByMatricolaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPassSostaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getPassSostaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDatiCatastalibyMatricolaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getDatiCatastalibyMatricolaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMovimentiMigratoriXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getMovimentiMigratoriXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIndirizziStoriciXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getIndirizziStoriciXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginWithCheckXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getLoginWithCheckXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResidentibyIndirizzoXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getResidentibyIndirizzoXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCittadinanzeByMatricolaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getCittadinanzeByMatricolaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCarteIdentitaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getCarteIdentitaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getResidentibyIndirizzoXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getResidentibyIndirizzoXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDatiCatastalibyMatricolaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getDatiCatastalibyMatricolaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMovimentiMigratoriXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getMovimentiMigratoriXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRicercaIndividuiXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getRicercaIndividuiXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getLoginXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLoginXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getLoginXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCittadinanzeByMatricolaXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getCittadinanzeByMatricolaXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getIndirizziStoriciXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getIndirizziStoriciXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDiffidaByMatricolaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getDiffidaByMatricolaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFamigliaByMatricolaXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:getFamigliaByMatricolaXML">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCarteIdentitainScadXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:getCarteIdentitainScadXMLResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="XMLWSAnagrafe2009Soap">
+    <wsdl:operation name="getRicercaIndividuiXML">
+<wsdl:documentation>Ricerca degli individui in anagrafe (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getRicercaIndividuiXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getRicercaIndividuiXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatiPuntualiXML">
+<wsdl:documentation>Dati Puntuali di un individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getDatiPuntualiXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getDatiPuntualiXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndirizziStoriciXML">
+<wsdl:documentation>Indirizzi storici di un individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getIndirizziStoriciXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getIndirizziStoriciXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovimentiMigratoriXML">
+<wsdl:documentation>Movimenti Migratori di un individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getMovimentiMigratoriXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getMovimentiMigratoriXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarteIdentitaXML">
+<wsdl:documentation>Carte di identità di un individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getCarteIdentitaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getCarteIdentitaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginXML">
+<wsdl:documentation>Login individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getLoginXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getLoginXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginWithCheckXML">
+<wsdl:documentation>Login individuo - Controllo tentativi (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getLoginWithCheckXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getLoginWithCheckXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPermessiSoggiornoXML">
+<wsdl:documentation>Permessi di soggiorno di un individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getPermessiSoggiornoXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getPermessiSoggiornoXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEventiXML">
+<wsdl:documentation>Eventi di un individuo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getEventiXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getEventiXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFamigliaByMatricolaXML">
+<wsdl:documentation>Stato di Famiglia di un individuo in base al suo status anagrafico (data evento)  (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getFamigliaByMatricolaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getFamigliaByMatricolaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiffidaByMatricolaXML">
+<wsdl:documentation>Diffida all'Immigrazione e/o all'Emigrazione by Matricola  (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getDiffidaByMatricolaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getDiffidaByMatricolaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPassSostaXML">
+<wsdl:documentation>Pass Sosta by Matricola o Targa  (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getPassSostaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getPassSostaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResidentibyIndirizzoXML">
+<wsdl:documentation>Residenti by Indirizzo (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getResidentibyIndirizzoXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getResidentibyIndirizzoXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPraticheByMatricolaXML">
+<wsdl:documentation>Pratiche by Matricola   (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getPraticheByMatricolaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getPraticheByMatricolaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCittadinanzeByMatricolaXML">
+<wsdl:documentation>Cittadinanze by Matricola   (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getCittadinanzeByMatricolaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getCittadinanzeByMatricolaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarteIdentitainScadXML">
+<wsdl:documentation>Carte d'Identità in Scadenza (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getCarteIdentitainScadXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getCarteIdentitainScadXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatiCatastalibyMatricolaXML">
+<wsdl:documentation>Dati catastali by Matricola (Versione XML)</wsdl:documentation>
+      <wsdl:input message="tns:getDatiCatastalibyMatricolaXMLSoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:getDatiCatastalibyMatricolaXMLSoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="XMLWSAnagrafe2009Soap12" type="tns:XMLWSAnagrafe2009Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getRicercaIndividuiXML">
+      <soap12:operation soapAction="http://comune.milano.it/getRicercaIndividuiXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatiPuntualiXML">
+      <soap12:operation soapAction="http://comune.milano.it/getDatiPuntualiXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndirizziStoriciXML">
+      <soap12:operation soapAction="http://comune.milano.it/getIndirizziStoriciXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovimentiMigratoriXML">
+      <soap12:operation soapAction="http://comune.milano.it/getMovimentiMigratoriXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarteIdentitaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getCarteIdentitaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginXML">
+      <soap12:operation soapAction="http://comune.milano.it/getLoginXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginWithCheckXML">
+      <soap12:operation soapAction="http://comune.milano.it/getLoginWithCheckXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPermessiSoggiornoXML">
+      <soap12:operation soapAction="http://comune.milano.it/getPermessiSoggiornoXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEventiXML">
+      <soap12:operation soapAction="http://comune.milano.it/getEventiXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFamigliaByMatricolaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getFamigliaByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiffidaByMatricolaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getDiffidaByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPassSostaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getPassSostaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResidentibyIndirizzoXML">
+      <soap12:operation soapAction="http://comune.milano.it/getResidentibyIndirizzoXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPraticheByMatricolaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getPraticheByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCittadinanzeByMatricolaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getCittadinanzeByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarteIdentitainScadXML">
+      <soap12:operation soapAction="http://comune.milano.it/getCarteIdentitainScadXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatiCatastalibyMatricolaXML">
+      <soap12:operation soapAction="http://comune.milano.it/getDatiCatastalibyMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="XMLWSAnagrafe2009Soap" type="tns:XMLWSAnagrafe2009Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getRicercaIndividuiXML">
+      <soap:operation soapAction="http://comune.milano.it/getRicercaIndividuiXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatiPuntualiXML">
+      <soap:operation soapAction="http://comune.milano.it/getDatiPuntualiXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getIndirizziStoriciXML">
+      <soap:operation soapAction="http://comune.milano.it/getIndirizziStoriciXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovimentiMigratoriXML">
+      <soap:operation soapAction="http://comune.milano.it/getMovimentiMigratoriXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarteIdentitaXML">
+      <soap:operation soapAction="http://comune.milano.it/getCarteIdentitaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginXML">
+      <soap:operation soapAction="http://comune.milano.it/getLoginXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getLoginWithCheckXML">
+      <soap:operation soapAction="http://comune.milano.it/getLoginWithCheckXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPermessiSoggiornoXML">
+      <soap:operation soapAction="http://comune.milano.it/getPermessiSoggiornoXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEventiXML">
+      <soap:operation soapAction="http://comune.milano.it/getEventiXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFamigliaByMatricolaXML">
+      <soap:operation soapAction="http://comune.milano.it/getFamigliaByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDiffidaByMatricolaXML">
+      <soap:operation soapAction="http://comune.milano.it/getDiffidaByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPassSostaXML">
+      <soap:operation soapAction="http://comune.milano.it/getPassSostaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResidentibyIndirizzoXML">
+      <soap:operation soapAction="http://comune.milano.it/getResidentibyIndirizzoXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPraticheByMatricolaXML">
+      <soap:operation soapAction="http://comune.milano.it/getPraticheByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCittadinanzeByMatricolaXML">
+      <soap:operation soapAction="http://comune.milano.it/getCittadinanzeByMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCarteIdentitainScadXML">
+      <soap:operation soapAction="http://comune.milano.it/getCarteIdentitainScadXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDatiCatastalibyMatricolaXML">
+      <soap:operation soapAction="http://comune.milano.it/getDatiCatastalibyMatricolaXML" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="XMLWSAnagrafe2009">
+    <wsdl:port name="XMLWSAnagrafe2009Soap12" binding="tns:XMLWSAnagrafe2009Soap12">
+      <soap12:address location="https://api.comune.milano.it:443/Anagrafe/1.3"/>
+    </wsdl:port>
+    <wsdl:port name="XMLWSAnagrafe2009Soap" binding="tns:XMLWSAnagrafe2009Soap">
+      <soap:address location="https://api.comune.milano.it:443/Anagrafe/1.3"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

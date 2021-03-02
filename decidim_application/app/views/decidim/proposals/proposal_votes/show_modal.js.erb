@@ -1,0 +1,16 @@
+/* app/views/decidim/proposals/proposal_votes/ */
+
+(function() {
+
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+var sondaggio = document.getElementById("sondaggio");
+
+modal.style.display = "block";
+sondaggio.focus();
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+    
+})();

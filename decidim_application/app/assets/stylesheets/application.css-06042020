@@ -1,0 +1,387 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require decidim
+ *= require_tree .
+ *= require_self
+ */
+
+.logo {
+    background-color: #157db6 !important;
+}
+
+.logo-wrapper img {
+    width: 289px;
+    height: 142px;
+    max-height: 142px;
+}
+
+.title-bar {
+    padding: 1rem 0.5rem;
+    background: #d6012e;
+    color: #fff;
+}
+
+input:focus {
+    background: #fff;
+}
+
+.navbar {
+    background: #b8b8b8;
+}
+
+.main-nav__link a,
+.main-nav__link a:hover {
+    color: #000;
+    text-transform: capitalize;
+}
+
+li.main-nav__link--active,
+li.main-nav__link:hover {
+    background-color: #fff;
+}
+
+.main-nav__link a:active,
+.main-nav__link--active a {
+    box-shadow: inset 0 4px 0 0 #000;
+    color: #000;
+}
+
+.topbar__search input,
+.topbar__search input:focus {
+    background: #fff;
+}
+
+.topbar__search svg,
+.address__icon svg {
+    fill: #000;
+}
+
+input::placeholder {
+    color: #000;
+}
+
+.topbar__edit__link svg {
+    fill: #fff;
+}
+
+.secondary svg {
+    fill: #157db6;
+}
+
+.filters__search svg {
+    fill: #fff;
+}
+
+element {}
+
+*,
+ ::before,
+ ::after {
+    box-sizing: inherit;
+}
+
+a {
+    line-height: inherit;
+    color: #157db6;
+    cursor: pointer;
+}
+
+.tags--proposal a {
+    color: #157db6;
+}
+
+.topbar__edit__link a:hover {
+    color: #fff;
+}
+
+.topbar__edit__link a {
+    color: #e8e8e8;
+}
+
+a:hover,
+a:focus {
+    color: #4d848f;
+}
+
+a {
+    line-height: inherit;
+    color: #157db6;
+    cursor: pointer;
+}
+
+.title-bar {
+    color: #fff;
+}
+
+h6.card--list__heading,
+h5.card__title,
+.text-small a,
+.text-small a:hover {
+    /* color: #157db6; */
+    color: black;
+}
+
+p.heading3 a,
+.accountability .categories .categories--group .card__link:hover strong,
+.accountability .categories .categories--group .card__link .category--line strong {
+    color: #157db6;
+}
+
+.tags--meeting li a,
+.tags--meeting li a:hover {
+    color: #157db6;
+}
+
+.title-bar {
+    color: #fff;
+}
+
+body {
+    -moz-osx-font-smoothing: auto;
+}
+
+.side-panel__tabs .tabs-title.is-active>a {
+    color: #157db6;
+}
+
+.topbar__notifications .icon,
+.topbar__conversations .icon {
+    fill: #fff;
+    opacity: 1;
+}
+
+.topbar__dropmenu .is-dropdown-submenu li a {
+    padding: .5rem;
+    color: #157db6;
+}
+
+.main-footer {
+    background-color: #b8b8b8;
+    position: relative;
+    padding: 1rem 0;
+    min-height: 76px;
+}
+
+.main-footer a,
+.mini-footer a {
+    color: #000;
+}
+
+.mini-footer {
+    padding: 1rem 0;
+    background-color: var(--primary);
+}
+
+p {
+    /*color: #157db6;*/
+}
+
+.card__link {
+    color: #157db6;
+}
+
+.button.hollow:hover,
+.button.hollow:focus,
+.button.hollow.secondary:hover,
+.button.hollow.secondary:focus,
+.show-more button,
+.show-more button:hover {
+    border-color: #157db6;
+    color: #fff;
+    background-color: #157db6;
+}
+
+.button.hollow,
+.button.hollow.secondary {
+    background-color: #157db6;
+    color: #fff;
+    border-color: #157db6;
+}
+
+.button.secondary:hover,
+.button.secondary:focus {
+    background-color: #157db6;
+    color: #fff;
+}
+
+button.follow-button,
+button.follow-button:focus,
+button.follow-button:hover {
+    background-color: transparent!important;
+    color: #157db6!important;
+}
+
+.home-bullet__desc p {
+    color: #000;
+}
+
+.icon {
+    fill: var(--primary);
+}
+
+.card__link:hover,
+.card__link {
+    color: #000;
+}
+
+.author-data .author__name,
+.author-data .author__name {
+    color: #157db6;
+}
+
+.card-data__item a:hover,
+.card-data__item a:focus,
+.card-data__item a,
+.card-data__item p,
+.card--picture-offset a,
+.upcoming-events h3,
+.card__text a,
+h4.card__title a,
+h4.card__title a:hover {
+    color: #000;
+}
+
+.home-pam__highlight .home-pam__number,
+.home-pam__number,
+.card--mini.card--process a,
+.card--mini.card--process a:hover {
+    color: #157db6;
+}
+
+.heading5,
+.card__title,
+.author-data--big .author__name {
+    color: #000;
+}
+
+.dropdown.menu>a:hover {
+    color: #F2F2F2;
+}
+
+.topbar__dropmenu>ul>li>a:hover {
+    color: #F2F2F2;
+}
+
+.dropdown.menu>li.is-dropdown-submenu-parent>a:hover {
+    position: relative;
+    padding-right: 1.5rem;
+    color: #F2F2F2;
+}
+
+.floating-helper__content svg,
+.floating-helper__content-close svg,
+.floating-helper__layout svg {
+    fill: #157db6;
+}
+
+#highlighted-processes h2 {
+    color: #157db6;
+}
+
+#highlighted-processes p {
+    color: #000;
+}
+
+.button.secondary {
+    background-color: #157db6;
+    color: #1a181d;
+}
+
+ul.footer-social .icon {
+    fill: #000;
+}
+
+.button.light:not(.hollow).secondary {
+    color: #fff !important;
+}
+
+li.is-dropdown-submenu-parent.is-active>a {
+    color: #f2f2f2 !important;
+}
+
+.topbar__user__login a:hover {
+    color: #f2f2f2 !important;
+}
+
+.floating-helper__content-close {
+    color: #fff !important;
+    background-color: #157db6 !important;
+}
+
+.floating-helper__content {
+    border-top: 5px solid #157db6 !important;
+}
+
+.home-pam__highlight,
+.card--mini.card--process a,
+.card--mini.card--process a:hover {
+    color: black;
+}
+
+.floating-helper__content-close svg {
+    fill: #fff !important;
+}
+
+.floating-helper__text {
+    color: #157db6 !important;
+}
+
+.floating-helper__icon {
+    background-color: #157db6 !important;
+}
+
+.floating-helper__layout svg {
+    fill: #fff;
+}
+
+.author-data a:hover,
+.author-data button:hover {
+    color: #157db6;
+}
+
+a:hover {
+    color: #157db6;
+}
+
+.card--list__icon {
+    fill: #157db6;
+}
+
+.pagination .current {
+    background-color: #157db6;
+}
+
+.main-footer a:hover,
+.mini-footer a:hover {
+    color: #fff;
+}
+
+.topbar__search input {
+    color: black !important;
+}
+
+div.tech-info a[aria-controls="fingerprint_dialog_proposal_55"] {
+    display: none;
+}
+
+.diff del strong {
+    background: transparent !important;
+}
+
+.diff ins strong {
+    background: transparent !important;
+}
+
+div[class^="tooltip light expanded"] {
+    display: none !important;
+}

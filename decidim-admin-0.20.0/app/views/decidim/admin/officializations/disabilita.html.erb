@@ -1,0 +1,28 @@
+<h2 class="process-title-summary">
+  <%= user.name %>
+</h2>
+<% if current_user.ga %>
+<%#= decidim_form_for(@form, html: { class: "form new_officialization" }, url: officializations_path, method: :post) do |f| %>
+  <div class="card">
+    <div class="card-section">
+      <div class="row column">
+        <%#= user.body_richiesta  %>
+        <%#= f.hidden_field :user_id %>
+        <%#= f.translated :text_field, :officialized_as, label: "Richiesta" %>
+      </div>
+    </div>
+  </div>
+  <% url_name = user.name.gsub! ' ', '+' %>
+  <div class="button--double form-general-submit">
+    <%= link_to "Disabilita utente", {controller: "officializations", action: "disable_user", :user_id => user.id}, class:"button" %>
+    <%= link_to "Torna indietro", "/admin/officializations", class:"button" %>
+  </div>
+  <% else %>
+  <div class="card">
+    <div class="card-section">
+      <div class="row column">
+        <p>Non sei autorizzato!</p>
+      </div>
+    </div>
+  </div>
+<% end %>

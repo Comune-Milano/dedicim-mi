@@ -1,0 +1,227 @@
+<% add_decidim_meta_tags({
+  description: present(@proposal).body,
+  title: present(@proposal).title,
+  url: proposal_url(@proposal.id)
+}) %>
+
+<%
+edit_link(
+  resource_locator(@proposal).edit,
+  :edit,
+  :proposal,
+  proposal: @proposal
+)
+%>
+
+<%= render partial: "voting_rules" %>
+<% if component_settings.participatory_texts_enabled? %>
+  <div class="row column">
+    <div class="section text-medium">
+      <%= t(".back_to") %> <u><%= link_to translated_attribute(@participatory_text.title), main_component_path(current_component) %></u>
+    </div>
+  </div>
+<% end %>
+<%= emendation_announcement_for @proposal %>
+
+<div class="row column view-header">
+   <% if @proposal.emendation? %> 
+  <h2 class="heading2"><%= t(".changes_at_title", title: present(@proposal.amendable).title(links: true, html_escape: true)) %></h2>
+  <% else %>
+    <h2 class="heading2"><%= present(@proposal).title(links: true, html_escape: true) %></h2>
+  <% end %>
+  <% unless component_settings.participatory_texts_enabled? %>
+    <%= cell("decidim/coauthorships", @proposal, has_actions: true, size: 3, context: { current_user: current_user }) %>
+  <% end %>
+</div>
+<div class="row">
+  <div class="columns section view-side mediumlarge-4 mediumlarge-push-8 large-3 large-push-9">
+  
+	  <% if current_user != nil && (current_user.admin? || current_user.officialized?) %>
+		  
+	    <% if @proposal.amendable? && allowed_to?(:edit, :proposal, proposal: @proposal) %>
+		    <%= link_to t(".edit_proposal"), edit_proposal_path(@proposal), class: "button secondary hollow expanded button-sc button--icon follow-button" %>	   
+      <% else %>
+        <%= amend_button_for @proposal %>
+      <% end %>
+    <% end %>
+
+    <%= emendation_actions_for @proposal %>
+
+    <% if current_settings.votes_enabled? || show_endorsements_card? || current_user %>
+      <% if @proposal.withdrawn? %>
+        <div class="card">
+          <div class="card__content">
+            <% if current_settings.votes_enabled? %>
+              <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <div class="card">
+          <div class="card__content">
+            <% if current_settings.votes_enabled? %>
+              <%= render partial: "votes_count", locals: { proposal: @proposal, from_proposals_list: false } %>
+              <%= render partial: "vote_button", locals: { proposal: @proposal, from_proposals_list: false } %>
+            <% end %>
+            <%= render partial: "endorsements_card_row", locals: { proposal: @proposal } %>
+            <br>
+            <%= follow_button_for(@proposal) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= amenders_list_for(@proposal) %>
+
+    <%= resource_reference(@proposal) %>
+    <%#= cell("decidim/fingerprint", @proposal) %>
+    <%= render partial: "decidim/shared/share_modal" %>
+    <%= embed_modal_for proposal_proposal_widget_url(@proposal, format: :js) %>
+    <%= cell "decidim/proposals/proposal_link_to_collaborative_draft", @proposal %>
+    <%= cell "decidim/proposals/proposal_link_to_rejected_emendation", @proposal %>
+  </div>
+  <div class="columns mediumlarge-8 mediumlarge-pull-4">
+     <div class="section">
+      <% if @proposal.emendation? && @proposal.versions.nil? %>	     
+	<%= cell("decidim/diff", @proposal.versions.last)  %>        
+      <% elsif not ["section","subsection"].include? @proposal.participatory_text_level %>
+        <%== cell("decidim/proposals/proposal_m", @proposal, full_badge: true).badge %>
+        <%= simple_format present(@proposal).body(links: true, strip_tags: true), nil, sanitize: false %>
+      <% end %>
+      <% if component_settings.geocoding_enabled? %>
+        <%= render partial: "decidim/shared/static_map", locals: { icon_name: "proposals", geolocalizable: @proposal } %>      
+      <% end %>
+      <%= cell "decidim/proposals/proposal_tags", @proposal %>
+    </div>
+
+    <%= cell("decidim/announcement", proposal_reason_callout_args) if @proposal.answered? %>
+
+    <%= linked_resources_for @proposal, :results, "included_proposals" %>
+    <%= linked_resources_for @proposal, :projects, "included_proposals" %>
+    <%= linked_resources_for @proposal, :meetings, "proposals_from_meeting" %>
+    <%= linked_resources_for @proposal, :proposals, "copied_from_component" %>
+
+    <%= cell "decidim/proposals/endorsers_list", @proposal, context: { current_user: current_user } %>
+    <%= amendments_for @proposal %>
+  </div>
+</div>
+
+<%= attachments_for @proposal %>
+
+<%= comments_for @proposal %>
+
+<%=
+  render partial: "decidim/shared/flag_modal", locals: {
+    reportable: @proposal,
+    form: @report_form,
+    url: decidim.report_path(sgid: @proposal.to_sgid.to_s)
+  }
+%>
+
+
+<style>
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-content h2 {
+  color: #d6012e !important;
+}
+
+.modal-content center input[type="submit"] {
+  background: #d6012e;
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px !important;
+  cursor: pointer;
+  white-space: pre-wrap !important;
+}
+
+.modal-content center input[type="submit"]:hover {
+  background: #e01b45;
+}
+
+.modal-content center input[type="submit"]:active {
+  background: #ad1434;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form accept-charset="UTF-8" action="/sender" data-remote="true" method="post">
+      <h2 style="color: #CCCC00">Il tuo profilo risulta NON Residente presso il Comune di Milano.</font></h2>
+      <label for="sondaggio" style="font-size: large">Di seguito puoi indicare la natura del rapporto con il comune di Milano e chiedere l'autorizzazione a poter partecipare. La tua richiesta sarà valutata e riceverai un riscontro quanto prima</label>
+      <textarea id="sondaggio" name="sondaggio" rows="15"></textarea>
+      <center><input type="submit" value="Invia all'amministratore" style="padding: 10px" /></center>
+    </form>
+  </div>
+
+</div>
+
+<div id="myModal2" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <center>
+      <h2 style="color: #CCCC00">Il modulo di partecipazione &egrave stato inviato, si prega di attendere la validazione.</font></h2>
+      <div style="height: 30px"></div>
+      <button id="button-close" class="button card__button button--sc">Chiudi</button>
+    </center>
+  </div>
+</div>
+
+
+<div id="myModal3" class="modal">
+  <div class="modal-content">
+    <center>
+      <h2 style="color: #CCCC00">La sua richiesta è stata presa in carico dagli amministratori.</h2>
+      <div style="height: 30px"></div>
+      <button id="button-close3" class="button card__button button--sc">Chiudi</button>
+    </center>
+  </div>
+</div>

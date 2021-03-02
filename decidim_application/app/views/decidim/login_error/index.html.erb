@@ -1,0 +1,107 @@
+<style>
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 10%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.modal-content {
+  border-radius: 8px;
+}
+
+.modal-content h2 {
+  color: #d6012e !important;
+}
+
+.modal-content center input[type="submit"] {
+  background: #d6012e;
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px !important;
+  cursor: pointer;
+  white-space: pre-wrap !important;
+}
+
+.modal-content center input[type="submit"]:hover {
+  background: #e01b45;
+}
+
+.modal-content center input[type="submit"]:active {
+  background: #ad1434;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.topbar__user {
+  visibility: hidden;
+}
+
+.modal-button {
+  background-color: #157db6;
+  padding: 10px;
+  letter-spacing: 0;
+  border-radius: 10px;
+  font-weight: bold;
+}
+a {
+  text-decoration: none;
+}
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: white;
+}
+
+/* selected link */
+a:active {
+  color: white;
+}
+
+</style>
+
+<%# if not is_admin? %>
+<body style="margin:0px;padding:0px;overflow:hidden">
+	<!--  <iframe src="#" frameborder="0" style="overflow:hidden;overflow-x:hidden;overflow-y:hidden;height:100%;width:100%;position:absolute;top:0px;left:0px;right:0px;bottom:0px" height="100%" width="100%"></iframe>-->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <center>
+		    <p style="font-size: 36px; color: red">Il tuo profilo non ha le autorizzazioni necessarie per accedere.</p>
+		    <p style="font-size: 28px">Per ulteriori informazioni contatta il Comune di Milano</p><br />
+		    <!--<a class="modal-button" style="font-size: 18px; margin-right: 50px" href="<%#= ENV["SERVER_COMUNE"] %>">Vai al sito del Comune di Milano</a> -->
+		    <a class="modal-button" style="font-size: 18px; margin-right: 50px" href="https://www.comune.milano.it/">Vai al sito del Comune di Milano</a> 
+		    <a class="modal-button" style="font-size: 18px;" href="https://partecipazione.comune.milano.it/">Torna in HomePage</a>
+            </center>
+        </div>
+    </div>
+</body>
+<%# end %>

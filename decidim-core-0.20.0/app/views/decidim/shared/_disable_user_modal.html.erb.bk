@@ -1,0 +1,49 @@
+<% if @utente_disabilitato %>
+
+  <div id="myModal5" class="modal">
+    <div class="modal-content">
+      <center>
+        <h2 style="color: #CCCC00">Ciao <%= current_user.name %>.</h2>
+        <p>Il tuo account è stato ripristinato.<br />
+          Tutti i contenuti pubblicati sulla piattaforma, che avevi chiesto di dissociare dalla tua identità, sono ora nuovamente visibili con il tuo nome.</p>
+
+
+        <div style="height: 30px"></div>
+        <button id="button-close" onclick="closeModal()" class="button card__button button--sc">Chiudi</button>
+      </center>
+    </div>
+  </div>
+  <style>
+    .modal {
+      position: fixed;
+      z-index: 1;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+  </style>
+
+<% end %>
+
+<%= javascript_tag defer: 'defer' do -%>
+
+  document.getElementById("myModal5").style.display = "block";
+
+  function closeModal(){
+  document.getElementById("myModal5").style.display = "none";
+  }
+
+<% end -%>
+

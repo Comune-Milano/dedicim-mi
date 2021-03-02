@@ -1,0 +1,7 @@
+<html>
+	<body onLoad="document.getElementById('form').submit();">
+		<form id="form" namform" method="POST" action="<%= url %>">
+		  <input name="SAMLRequest" value="<%= saml_request %>" type="hidden"/>
+		</form>
+	</body>
+</html>
